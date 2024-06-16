@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/receipts")
@@ -24,5 +26,20 @@ public class Controller {
         Map<String,String> receiptIdResponse = new HashMap<>();
         receiptIdResponse.put("id", id);
         return receiptIdResponse;
+    }
+
+    @GetMapping("/{id}/points")
+    public Map<String, Integer> getReceiptPoints(@PathVariable String id) {
+        
+        Receipt receipt = (Receipt) newReceiptEntry.get(id);
+            if (receipt != null) {
+                Integer points = PointsCalculator.calculateTotalPoints(receipt);
+                
+                Map <String, Integer> pointsResponse = new HashMap<>();
+                pointsResponse.put("points", points);
+                return pointsResponse;
+            } else {
+                throw new NullPointerException ("Receipt ID not Found");
+            }
     }
 }
