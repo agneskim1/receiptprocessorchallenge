@@ -23,5 +23,5 @@ GET Request
 
 
 # Resources
-To learn more about Springboot: https://spring.io/projects/spring-boot 
-To learn more about Docker: https://www.docker.com/get-started/
+* To learn more about Springboot: https://spring.io/projects/spring-boot 
+* To learn more about Docker: https://www.docker.com/get-started/
